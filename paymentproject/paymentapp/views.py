@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .forms import FundForm
+from .models import StartFund
 
 # Create your views here.
 def index(request):
@@ -9,4 +11,7 @@ def home(request):
     return render(request, 'paymentapp/home.html')
 
 def startFund(request):
-    return render(request, 'paymentapp/startFund.html')
+    form = FundForm()
+    
+    context = {'form':form}
+    return render(request, 'paymentapp/startFund.html', context)
