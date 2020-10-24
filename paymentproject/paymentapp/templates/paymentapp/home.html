@@ -7,8 +7,9 @@
         <div class="card-columns">
             {% for fund in allFunds %}
                 <div class="card" style="width: 100%;">
-                    <img class="card-img-top" src="{{ fund.image }}" alt="">
+                    <img class="card-img" src="{{ fund.image.url }}">
                     <div class="card-body">
+                        
                         <h5 class="card-title"> {{ fund.name }} </h5>
                         <p class="card-text"> {{ fund.fundReason }} </p>
                     </div>
