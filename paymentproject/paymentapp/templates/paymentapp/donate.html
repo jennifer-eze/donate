@@ -6,8 +6,8 @@
     <div class="col-md-6">
         <form method="post">
             {% csrf_token %}
-            {{ car_form|crispy }} <br>
-            <button type="submit" class="btn btn-primary btn-sm" value="create">Create</button>
+            {{ form|crispy }} <br>
+            <button type="submit" class="btn btn-primary btn-sm" value="create">Donate</button>
             <a class="btn btn-primary btn-sm" href="{% url 'home' %}" role="button">Cancel</a>
         </form>
     </div>

@@ -15,10 +15,11 @@
             {% for fund in allFunds %}
                 <div class="card" style="width: 100%;">
                     <img class="card-img-top" src="{{ fund.image.url }}">
-                    <div class="card-body">
-                        
+                    <div class="card-body">                      
                         <h5 class="card-title"> {{ fund.name }} </h5>
                         <p class="card-text"> {{ fund.fundReason }} </p>
+                        {% comment %} <button type="submit" class="btn btn-primary btn-sm">Donate</button> {% endcomment %}
+                        <a class="btn btn-primary btn-sm" href="{% url 'donate' %}" role="button">Donate</a>
                     </div>
                 </div>
             {% endfor %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import FundForm
+from .forms import FundForm, DonateForm
 from .models import StartFund
 
 # Create your views here.
@@ -24,3 +24,7 @@ def startFund(request):
             new_fund = FundForm()
     context = {'car_form':new_fund}
     return render(request, 'paymentapp/startFund.html', context)
+
+def donate(request):
+    form = DonateForm()
+    return render(request, 'paymentapp/donate.html', {'form':form})
