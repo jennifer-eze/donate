@@ -8,7 +8,9 @@ def index(request):
     return render(request, 'paymentapp/index.html')
 
 def home(request):
-    return render(request, 'paymentapp/home.html')
+    allFunds = StartFund.objects.all()
+    
+    return render(request, 'paymentapp/home.html', {'allFunds':allFunds})
 
 def startFund(request):
     # form = FundForm()
