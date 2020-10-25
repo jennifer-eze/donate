@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .forms import FundForm, DonateForm
 from .models import StartFund
+
+import stripe
+
+stripe.api_key = "sk_test_51HfjeECnG9zuAAzuS44E1KDe89nOdbhcO0vDUxwBnsBrTxPipa3Jq0jYYTMvYpwomoHPtQS7a826WH155ttFTOeh00W4xm1nxV"
 
 # Create your views here.
 def index(request):
@@ -26,5 +31,6 @@ def startFund(request):
     return render(request, 'paymentapp/startFund.html', context)
 
 def donate(request):
-    form = DonateForm()
-    return render(request, 'paymentapp/donate.html', {'form':form})
+    # form = DonateForm()
+    # return render(request, 'paymentapp/donate.html', {'form':form})
+    return render(request, 'paymentapp/donate.html')
