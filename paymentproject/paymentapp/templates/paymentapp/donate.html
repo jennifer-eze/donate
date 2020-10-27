@@ -1,8 +1,26 @@
-{% extends 'paymentapp/main.html' %}
+{% comment %} {% extends 'paymentapp/main.html' %} {% endcomment %}
 {% load static %}
+
+<head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: #F5FFFA;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+        {%  include 'paymentapp/navbar.html' %}
+        
+</head>
+
 {% load crispy_forms_tags %}
 
 {% block  content %}
+<body>
 <script src="https://js.stripe.com/v3/"></script>
 <style type="text/css">
     /**
@@ -36,15 +54,20 @@
     .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
     }
+
+    .form-row{
+        display: inherit;
+    }
 </style>
 
 <div class="container">
-	<div class="column-6">
+	<div class="col-sm">
 		<div id="left-wrapper">
             <form action="/charge" method="post" id="payment-form">
                 {% csrf_token %}
                 <div class="form-row">
                     <label for="card-element">
+                    <br>
                     Credit or debit card
                     </label>
                     <div id="card-element">
@@ -55,7 +78,7 @@
                     <div id="card-errors" role="alert"></div>
                 </div>
 
-                <button>Submit Payment</button>
+                <br><button>Submit Payment</button>
             </form>
         </div>
     </div>
@@ -146,4 +169,5 @@
     form.submit();
     }
 </script>
+</body>
 {% endblock  %}
