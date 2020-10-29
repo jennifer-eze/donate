@@ -11,3 +11,4 @@ class FundForm(ModelForm):
 class DonateForm(forms.Form):
     name = forms.CharField(max_length=150)
     email = forms.EmailField()
+    amount = forms.IntegerField()

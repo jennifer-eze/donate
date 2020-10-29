@@ -6,8 +6,8 @@ from .forms import FundForm, DonateForm
 from .models import StartFund
 
 import stripe
-
-stripe.api_key = "sk_test_51HfjeECnG9zuAAzuS44E1KDe89nOdbhcO0vDUxwBnsBrTxPipa3Jq0jYYTMvYpwomoHPtQS7a826WH155ttFTOeh00W4xm1nxV"
+# Fill in your api key
+stripe.api_key = ""
 
 # Create your views here.
 def index(request):
@@ -37,22 +37,24 @@ def donate(request):
     # return render(request, 'paymentapp/donate.html')
 
 def charge(request):
-    amount = 5
+    
     if request.method == 'POST':
         print('Data:',request.POST)
 
-        # amount = int(request.POST['amount'])
+        amount = int(request.POST['amount'])
 
-        # customer = stripe.Customer.create(
-        #     source=request.POST[['stripeToken']]
-        # )
+        customer = stripe.Customer.create(
+            name=request.POST['name'],
+            email=request.POST['email'],
+            source=request.POST['stripeToken']
+        )
 
-        # charge = stripe.Charge.create(
-        #     customer=customer,
-        #     amount=amount*100,
-        #     currency='usd',
-        #     description="Donation"
-        # )
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=amount*100,
+            currency='eur',
+            description="Donation"
+        )
 
     return redirect(reverse('success', args=[amount]))
 
