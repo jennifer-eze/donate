@@ -63,8 +63,9 @@
 <div class="container">
 	<div class="col-sm">
 		<div id="left-wrapper">
-            <form action="/charge" method="post" id="payment-form">
+            <form action="{% url 'charge' %}" method="post" id="payment-form">
                 {% csrf_token %}
+                {{ form|crispy }} 
                 <div class="form-row">
                     <label for="card-element">
                     <br>

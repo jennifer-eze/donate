@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse
 from django.http import JsonResponse
 from .forms import FundForm, DonateForm
 from .models import StartFund
@@ -31,6 +32,30 @@ def startFund(request):
     return render(request, 'paymentapp/startFund.html', context)
 
 def donate(request):
-    # form = DonateForm()
-    # return render(request, 'paymentapp/donate.html', {'form':form})
-    return render(request, 'paymentapp/donate.html')
+    form = DonateForm()
+    return render(request, 'paymentapp/donate.html', {'form':form})
+    # return render(request, 'paymentapp/donate.html')
+
+def charge(request):
+    amount = 5
+    if request.method == 'POST':
+        print('Data:',request.POST)
+
+        # amount = int(request.POST['amount'])
+
+        # customer = stripe.Customer.create(
+        #     source=request.POST[['stripeToken']]
+        # )
+
+        # charge = stripe.Charge.create(
+        #     customer=customer,
+        #     amount=amount*100,
+        #     currency='usd',
+        #     description="Donation"
+        # )
+
+    return redirect(reverse('success', args=[amount]))
+
+def successMassage(request, args):
+    amount = args
+    return render(request, 'paymentapp/success.html', {'amount':amount})
